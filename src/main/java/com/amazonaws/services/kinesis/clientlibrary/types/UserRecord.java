@@ -22,8 +22,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.amazonaws.services.kinesis.model.Record;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -33,7 +34,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
  */
 @SuppressWarnings("serial")
 public class UserRecord extends Record {
-    private static final Logger LOGGER = Logger.getLogger(UserRecord.class.getName());
+    private static final Log LOG = LogFactory.getLog(UserRecord.class);
 
     private static final byte[] AGGREGATED_RECORD_MAGIC = new byte[] {-13, -119, -102, -62 };
     private static final int DIGEST_SIZE = 16;
@@ -284,7 +285,7 @@ public class UserRecord extends Record {
                             sb.append("Sequence number: ").append(r.getSequenceNumber()).append("\n")
                                 .append("Raw data: ")
                                 .append(javax.xml.bind.DatatypeConverter.printBase64Binary(messageData)).append("\n");
-                            LOGGER.log(Level.SEVERE, sb.toString(), e);
+                            LOG.error(sb.toString(), e);
                         }
                     } catch (InvalidProtocolBufferException e) {
                         isAggregated = false;
