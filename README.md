@@ -11,4 +11,3 @@ NOTE that this library is not available on Maven Central. If you wish to use it,
  - `com.amazonaws.services.kinesis.clientlibrary.types.Messages` (4dfc17d) from [Kinesis Client Library v1.6.5](https://github.com/awslabs/amazon-kinesis-client/tree/v1.6.5)
  - `com.amazonaws.services.kinesis.clientlibrary.types.UserRecord` (c6e393c) from [Kinesis Client Library v1.6.5](https://github.com/awslabs/amazon-kinesis-client/tree/v1.6.5)
   - Usage of commons-lang (specifically `StringUtils`) has been removed
-  - Usage of commons-logging has been replaced with `java.util.logging`
