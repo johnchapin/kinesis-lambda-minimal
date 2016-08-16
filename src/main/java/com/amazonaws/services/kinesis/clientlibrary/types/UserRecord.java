@@ -22,10 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.amazonaws.services.kinesis.model.Record;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -35,13 +33,13 @@ import com.google.protobuf.InvalidProtocolBufferException;
  */
 @SuppressWarnings("serial")
 public class UserRecord extends Record {
-    private static final Log LOG = LogFactory.getLog(UserRecord.class);
+    private static final Logger LOGGER = Logger.getLogger(UserRecord.class.getName());
 
     private static final byte[] AGGREGATED_RECORD_MAGIC = new byte[] {-13, -119, -102, -62 };
     private static final int DIGEST_SIZE = 16;
     private static final BigInteger SMALLEST_HASH_KEY = new BigInteger("0");
     // largest hash key = 2^128-1
-    private static final BigInteger LARGEST_HASH_KEY = new BigInteger(StringUtils.repeat("FF", 16), 16);
+    private static final BigInteger LARGEST_HASH_KEY = new BigInteger("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF", 16);
 
     private final long subSequenceNumber;
     private final String explicitHashKey;
@@ -286,7 +284,7 @@ public class UserRecord extends Record {
                             sb.append("Sequence number: ").append(r.getSequenceNumber()).append("\n")
                                 .append("Raw data: ")
                                 .append(javax.xml.bind.DatatypeConverter.printBase64Binary(messageData)).append("\n");
-                            LOG.error(sb.toString(), e);
+                            LOGGER.log(Level.SEVERE, sb.toString(), e);
                         }
                     } catch (InvalidProtocolBufferException e) {
                         isAggregated = false;
