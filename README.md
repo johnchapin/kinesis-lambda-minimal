@@ -2,6 +2,8 @@
 
 The minimum classes and dependencies required for a Lambda to process Kinesis events.
 
+NOTE that this library is not available on Maven Central. If you wish to use it, you'll need to build and deploy to your own Maven repository.
+
 ### Kinesis Lambda Minimal v1.0.0 includes:
 
  - `com.amazonaws.services.kinesis.model.Record` (cf8422a) from [Kinesis Java SDK v1.11.21](https://github.com/aws/aws-sdk-java/tree/1.11.21/aws-java-sdk-kinesis)
@@ -10,4 +12,3 @@ The minimum classes and dependencies required for a Lambda to process Kinesis ev
  - `com.amazonaws.services.kinesis.clientlibrary.types.UserRecord` (c6e393c) from [Kinesis Client Library v1.6.5](https://github.com/awslabs/amazon-kinesis-client/tree/v1.6.5)
   - Usage of commons-lang (specifically `StringUtils`) has been removed
   - Usage of commons-logging has been replaced with `java.util.logging`
-
